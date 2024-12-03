@@ -7,12 +7,19 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Parkinsans", "sans-serif"]
+    },
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
+        primaryBG: '#000814',
+        secondaryBG: '#001D3D',
+        blue: '#001D3D',
+        darkYellow: '#001D3D',
+        lightYellow: '#FFD60A',
+        lightBlue: '#7BC0FF'
+      }
+    }
   },
   plugins: [],
 } satisfies Config;
