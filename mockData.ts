@@ -12,3 +12,8 @@ export const divisions: string[] = [
   "HeavyWeight",
   "Divine"
 ];
+
+export const platforms: string[] = [
+  "PC",
+  "Console"
+]

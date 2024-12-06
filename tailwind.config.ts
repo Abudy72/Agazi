@@ -8,18 +8,21 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ["Parkinsans", "sans-serif"]
+      sans: ["Parkinsans", "sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        footer_bg: "url('footerBackground.svg)",
+      },
       colors: {
-        primaryBG: '#000814',
-        secondaryBG: '#001D3D',
-        blue: '#001D3D',
-        darkYellow: '#001D3D',
-        lightYellow: '#FFD60A',
-        lightBlue: '#7BC0FF'
-      }
-    }
+        primaryBG: "#000814",
+        secondaryBG: "#001D3D",
+        blue: "#001D3D",
+        darkYellow: "#FFC300",
+        lightYellow: "#FFD60A",
+        lightBlue: "#7BC0FF",
+      },
+    },
   },
   plugins: [],
 } satisfies Config;
