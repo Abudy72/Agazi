@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <Navbar activeTab={0} />
       {/* <VerticalDotIndicator /> */}
       <LandingPageWrapper/>
 

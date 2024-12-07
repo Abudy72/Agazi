@@ -3,20 +3,20 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Navbar = () => {
-  return <NavBarLG />;
-};
-
-const NavBarLG = () => {
+const Navbar: React.FC<{
+  activeTab: number;
+}> = ({ activeTab }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const activeTabCSS =
+    "bg-gray-100 px-4 py-2 text-gray-700 dark:bg-gray-800 dark:text-gray-200";
+  const inActiveTabCSS =
+    " px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200";
   return (
     <header className="text-white p-4 rounded-lg">
       <nav className="place-self-end max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo {ONLY IF VIEW IS MD+} */}
         <div className="hidden md:flex items-center">
-          <div className="flex text-pink-400 text-3xl font-semibold">
-            Āgāzi
-          </div>
+          <div className="flex text-pink-400 text-3xl font-semibold">Āgāzi</div>
         </div>
         {/* Navigation Links */}
         <NavBarLinks
@@ -32,13 +32,69 @@ const NavBarLG = () => {
         >
           ☰
         </button>
-        
-        <NavBarLinks
-          screenSettings={`${
-            isMenuOpen ? "flex" : "hidden"
-          } block top-16 left-0 w-full flex-col justify-center text-md text-blue-800 space-y-2 bg-blue-900 p-4 rounded-lg shadow-lg`}
-        />
-        
+
+        <ul
+          className={
+            isMenuOpen
+              ? "block space-y-1 top-16 left-0 w-full flex-col justify-center text-md text-blue-800 bg-black-900 p-4 rounded-lg shadow-lg"
+              : "hidden"
+          }
+        >
+          <li>
+            <Link
+              href="/"
+              className={`"group flex items-center justify-between rounded-lg " + ${
+                activeTab === 0 ? activeTabCSS : inActiveTabCSS
+              }`}
+            >
+              <span className="text-sm font-medium"> Home </span>
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="leagues"
+              className={`"group flex items-center justify-between rounded-lg " + ${
+                activeTab === 1 ? activeTabCSS : inActiveTabCSS
+              }`}
+            >
+              <span className="text-sm font-medium"> Leagues </span>
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="franchises"
+              className={`"group flex items-center justify-between rounded-lg " + ${
+                activeTab === 2 ? activeTabCSS : inActiveTabCSS
+              }`}
+            >
+              <span className="text-sm font-medium"> Franchises </span>
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="probuilds"
+              className={`"group flex items-center justify-between rounded-lg " + ${
+                activeTab === 3 ? activeTabCSS : inActiveTabCSS
+              }`}
+            >
+              <span className="text-sm font-medium"> Builds </span>
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="about"
+              className={`"group flex items-center justify-between rounded-lg " + ${
+                activeTab === 4 ? activeTabCSS : inActiveTabCSS
+              }`}
+            >
+              <span className="text-sm font-medium"> About </span>
+            </Link>
+          </li>
+        </ul>
       </nav>
 
       {/* Mobile Search Bar */}
@@ -51,7 +107,7 @@ const NavBarLinks: React.FC<{ screenSettings: string }> = ({
   screenSettings,
 }) => {
   return (
-    <div className={screenSettings}>
+    <div className={"" + screenSettings}>
       <Link href="/" className="hover:text-darkYellow">
         HOME
       </Link>
@@ -87,5 +143,4 @@ const SearchBar: React.FC<{ screenSettings: string }> = ({
     </div>
   );
 };
-
 export default Navbar;
