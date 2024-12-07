@@ -11,13 +11,10 @@ export default {
       sans: ["Parkinsans", "sans-serif"],
     },
     extend: {
-      backgroundImage: {
-        footer_bg: "url('footerBackground.svg)",
-      },
       colors: {
         primaryBG: "#000814",
         secondaryBG: "#001D3D",
-        blue: "#001D3D",
+        blue: "#003566",
         darkYellow: "#FFC300",
         lightYellow: "#FFD60A",
         lightBlue: "#7BC0FF",
