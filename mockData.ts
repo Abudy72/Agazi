@@ -1,5 +1,7 @@
+import { MatchHistoryProps } from "./app/leagues/MatchResults";
 import { LeagueCardProps } from "./components/League/leagueCards";
 import { UpcomingMatchProps } from "./components/Matches/UpcomingMatches";
+import { Franchise, GameType, MatchUp } from "./libs/models/League";
 
 export const franchies: string[] = [
   "Royal Jesters",
@@ -168,3 +170,144 @@ export const upcomingMatchesMOCKDATA: UpcomingMatchProps[] = [
     time: new Date('2024-12-25T23:26:02'),
   }
 ];
+
+
+export function fetchRecentMatches(): MatchHistoryProps[] {
+  const demo =
+    "https://pbs.twimg.com/profile_images/1745851721350324224/_Cz_nxO1_400x400.jpg";
+  const matchA: MatchHistoryProps = {
+    match: matchUpA,
+    leagueName: leaguesMOCKDATA[0].leagueName,
+    division: divisions[0],
+    teamALogo: matchUpA.teamA.logo ?? demo,
+    teamBLogo: matchUpA.teamB.logo ?? demo,
+    teamAWins: 5,
+    teamBWins: 10,
+    teamALosses: 1,
+    teamBLosses: 3,
+  };
+
+  const matchB: MatchHistoryProps = {
+    match: matchUpA,
+    leagueName: "Quacken Smite League",
+    division: divisions[0],
+    teamALogo: matchUpA.teamA.logo ?? demo,
+    teamBLogo: matchUpA.teamB.logo ?? demo,
+    teamAWins: 5,
+    teamBWins: 10,
+    teamALosses: 1,
+    teamBLosses: 3,
+  };
+
+  const matchD: MatchHistoryProps = {
+    match: matchUpA,
+    leagueName: "League1",
+    division: divisions[0],
+    teamALogo: matchUpA.teamA.logo ?? demo,
+    teamBLogo: matchUpA.teamB.logo ?? demo,
+    teamAWins: 5,
+    teamBWins: 10,
+    teamALosses: 1,
+    teamBLosses: 3,
+  };
+
+  const matchC: MatchHistoryProps = {
+    match: matchUpA,
+    leagueName:"League2",
+    division: divisions[1],
+    teamALogo: matchUpA.teamA.logo ?? demo,
+    teamBLogo: matchUpA.teamB.logo ?? demo,
+    teamAWins: 5,
+    teamBWins: 10,
+    teamALosses: 1,
+    teamBLosses: 3,
+  };
+  const matchE: MatchHistoryProps = {
+    match: matchUpA,
+    leagueName:"League3",
+    division: divisions[2],
+    teamALogo: matchUpA.teamA.logo ?? demo,
+    teamBLogo: matchUpA.teamB.logo ?? demo,
+    teamAWins: 5,
+    teamBWins: 10,
+    teamALosses: 1,
+    teamBLosses: 3,
+  };
+  const matchF: MatchHistoryProps = {
+    match: matchUpA,
+    leagueName:"League4",
+    division: divisions[0],
+    teamALogo: matchUpA.teamA.logo ?? demo,
+    teamBLogo: matchUpA.teamB.logo ?? demo,
+    teamAWins: 5,
+    teamBWins: 10,
+    teamALosses: 1,
+    teamBLosses: 3,
+  };
+
+  return [matchA,matchB,matchC,matchD,matchE,matchF]
+}
+
+
+
+  export const theCrew: Franchise = {
+    franchiseId: 1,
+    franchiseName: "The Crew",
+    logo: "/team.svg"
+};
+
+export const KWM: Franchise = {
+    franchiseId: 3,
+    franchiseName: "Kittens With Mittens",
+    logo: "/team.svg"
+};
+
+export const FT: Franchise = {
+    franchiseId: 4,
+    franchiseName: "Flaming Tanukis",
+    logo:"/team.svg"
+};
+
+export const HS: Franchise = {
+    franchiseId: 5,
+    franchiseName: "Heart Shitters",
+    logo: "/team.svg"
+};
+
+export const matchUpA: MatchUp =  {
+    teamA: theCrew,
+    teamB: HS,
+    isPlayed: true,
+    scoreA: 2,
+    scoreB: 1,
+    matchId: "",
+    setId: "",
+    matchUpDate: new Date(2024, 7, 23, 14, 30),
+    season: 0,
+    gameType: GameType.QuarterFinals
+  }
+  
+  export const matchUpB: MatchUp =  {
+    teamA: HS,
+    teamB: FT,
+    isPlayed: true,
+    scoreA: 2,
+    scoreB: 1,
+    matchId: "",
+    setId: "",
+    matchUpDate: new Date(2024, 7, 23, 14, 30),
+    season: 0,
+    gameType: GameType.Finals
+  }
+  export const matchUpC: MatchUp =  {
+    teamA: FT,
+    teamB: KWM,
+    isPlayed: true,
+    scoreA: 2,
+    scoreB: 1,
+    matchId: "",
+    setId: "",
+    matchUpDate: new Date(2024, 7, 23, 14, 30),
+    season: 0,
+    gameType: GameType.PlayIns
+  }
