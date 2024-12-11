@@ -1,7 +1,7 @@
-import { MatchHistoryProps } from "./app/leagues/MatchResults";
+import { MatchHistoryProps } from "./components/League/MatchResults";
 import { LeagueCardProps } from "./components/League/leagueCards";
 import { UpcomingMatchProps } from "./components/Matches/UpcomingMatches";
-import { Franchise, GameType, MatchUp } from "./libs/models/League";
+import { Franchise, GameType, MatchUp } from "./libs/models/LeagueDEMO";
 
 export const franchies: string[] = [
   "Royal Jesters",
@@ -253,19 +253,19 @@ export function fetchRecentMatches(): MatchHistoryProps[] {
   export const theCrew: Franchise = {
     franchiseId: 1,
     franchiseName: "The Crew",
-    logo: "/team.svg"
+    logo: "/DemoLogo.png"
 };
 
 export const KWM: Franchise = {
     franchiseId: 3,
     franchiseName: "Kittens With Mittens",
-    logo: "/team.svg"
+    logo: "/DemoLogo.png"
 };
 
 export const FT: Franchise = {
     franchiseId: 4,
     franchiseName: "Flaming Tanukis",
-    logo:"/team.svg"
+    logo:"/DemoLogo.png"
 };
 
 export const HS: Franchise = {

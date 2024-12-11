@@ -1,4 +1,4 @@
-import { MatchUp } from "@/libs/models/League";
+import { MatchUp } from "@/libs/models/LeagueDEMO";
 import React from "react";
 import Image from "next/image";
 

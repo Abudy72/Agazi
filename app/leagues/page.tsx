@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Header";
 import { fetchRecentMatches, leaguesMOCKDATA, upcomingMatchesMOCKDATA } from "@/mockData";
 import { useEffect, useState } from "react";
-import MatchResultComponent from "./MatchResults";
+import MatchResultComponent from "../../components/League/MatchResults";
 
 
 export default function Home() {
