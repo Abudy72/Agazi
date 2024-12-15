@@ -1,25 +1,28 @@
+import { Division, LeagueSet, TeamMember } from "./Division";
+
 export interface League {
   leagueId: number;
   leagueName: string;
   season: number;
-  //Team/Franchise List:
-  //Brackets/Schedules List:
-  //Divisions:
-  //History
+  divisions: Division[] | string; // This will contain all details such as sets, scores, etc..
   staff: LeagueStaff
 }
 
 interface LeagueStaff {
-    ownerId: number;
-    ownerName: string;
+    owner: [number,string];
     regAdmins: [number,string][]
     supAdmins: [number,string][]
 }
 
-export interface Division {
-    divName: string;
-    mmrRange: [number,number] // {HIGHER,LOWER}
-    //bracket:
-    //schedule:
-    //resultsHistory
+export interface LeagueHistory {
+  leagueHistoryId: number;
+  season: number;
+  divId: number;
+  teamHistory: TeamMember[];
+  matchResults: LeagueSet[];
+}
+
+export interface Franchise {
+  franchiseId: number;
+  franchiseName: string;
 }
