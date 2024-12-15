@@ -1,20 +1,16 @@
 // DivisionSelect.tsx
 import React from "react";
+import { useDivision } from "./DivisionContext";
 
-type DivisionSelectProps = {
-  divisions: string[];
-  activeDivision: string;
-  onChange: (value: string) => void;
-};
-
-const DivisionSelect: React.FC<DivisionSelectProps> = ({ divisions, activeDivision, onChange }) => {
+const DivisionSelect: React.FC<{ divisions: string[] }> = ({ divisions }) => {
+  const { activeDivision, setActiveDivision } = useDivision();
   return (
     <select
       name="status"
       aria-label="Choose a division"
       className="bg-transparent"
       value={activeDivision}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => setActiveDivision(e.target.value)}
     >
       {divisions.map((div, index) => (
         <option key={index} value={div}>
