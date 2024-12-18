@@ -3,13 +3,11 @@ import React, { useState } from "react";
 import { StatsDataTableComponent } from "../StatsDataTableComponent";
 import { DivisionProvider, useDivision } from "./DivisionSelector/DivisionContext";
 import DivisionSelect from "./DivisionSelector/DivisionSelect";
+import MultiBracketTournament from "./Brackets";
 
 export interface LeagueHomePageProps {
   leagueName: string;
   divisions: string[];
-  platforms: string[];
-  server: string;
-  draft: string;
 }
 
 export const LeagueHomePageMain: React.FC<LeagueHomePageProps> = (props) => {
@@ -56,7 +54,12 @@ const Stats: React.FC<{ division: string }> = ({ division }) => {
     </div>
   );
 };
-const Brackets = () => <div>Brackets Component</div>;
+const Brackets: React.FC = () => {
+  return <div className="p-4">
+    <h1 className="text-2xl font-bold mb-4">Tournament Brackets</h1>
+    <MultiBracketTournament />
+  </div>;
+}
 const VODs = () => <div>VODs Component</div>;
 const Schedule = () => <div>Schedule Component</div>;
 

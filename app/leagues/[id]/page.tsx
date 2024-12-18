@@ -1,8 +1,7 @@
 import Navbar from "@/components/Header";
-import { LeagueHomePageMain } from "@/components/League/leaguePageNav";
+import { LeagueHomePageMain } from "@/components/League/LeagueHomePageMain";
 import { PageNotFound } from "@/components/PageNotFound";
-import { leagueHomePage } from "@/libs/models/LeagueDEMO";
-
+import {fetchLeagueBasedOnID} from "@/libs/util/LeagueUtil"
 interface LeaguePageProps {
   params: {
     id: string;
@@ -11,17 +10,13 @@ interface LeaguePageProps {
 
 const LeaguePage: React.FC<LeaguePageProps> = async ({ params }) => {
   const { id } = await params;
-  const league = fetchLeague(id);
-
+  const league = fetchLeagueBasedOnID(id);
   return league ? (
     <div>
       <Navbar activeTab={-1} />
       <LeagueHomePageMain
         leagueName={"Olympus Smite Leage"}
-        divisions={leagueHomePage.divisions}
-        platforms={[]}
-        server={""}
-        draft={""}
+        divisions={league.divisions.map(d => d.divisionName)}
       />
     </div>
   ) : (
@@ -34,8 +29,7 @@ const LeaguePage: React.FC<LeaguePageProps> = async ({ params }) => {
   );
 };
 
-function fetchLeague(id: string | number) {
-  return id === "OSL" ? "osl" : null; // TO DO CHANGE THIS TO PROPER FETCHING METHOD.
-}
+
 
 export default LeaguePage;
+
