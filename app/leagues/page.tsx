@@ -2,9 +2,9 @@
 import Carousel from "@/components/CardCarousel";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Header";
-import { fetchRecentMatches, leaguesMOCKDATA, upcomingMatchesMOCKDATA } from "@/mockData";
 import { useEffect, useState } from "react";
 import MatchResultComponent from "../../components/League/MatchResults";
+import { leaguesMOCKDATA, upcomingMatchesMOCKDATA, fetchRecentMatches } from "@/mockData";
 
 
 export default function Home() {

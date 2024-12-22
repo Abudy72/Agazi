@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const LandingPageSecOne = () => {
   return (
-    <div className="flex flex-col items-center w-full min-h-screen bg-dark mt-4">
+    <div className="flex flex-col items-center w-full min-h-screen mt-4">
       <div className="flex justify-center m-8">
         <h1 className="py-4 text-center text-lightBlue font-light sm:text-4xl md:text-7xl">
           JOIN THRILLING TOURNAMENTS

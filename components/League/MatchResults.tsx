@@ -1,9 +1,9 @@
-import { MatchUp } from "@/libs/models/LeagueDEMO";
 import React from "react";
 import Image from "next/image";
+import { Match } from "@/libs/Types/League";
 
 export interface MatchHistoryProps {
-  match: MatchUp;
+  match: Match;
   leagueName: string;
   division: string;
   teamALogo: string;
@@ -31,14 +31,14 @@ const MatchResultComponent: React.FC<MatchHistoryProps> = ({
       <span className="text-2xl absolute top-0 text-white left-0 p-3">{leagueName}</span>
       <Image width="120" height="120" alt="" src={teamALogo} className="m-10" />
       <span className="font-semibold text-lightYellow text-xl p-0">
-        {match.scoreA ?? 0} - {match.scoreB ?? 0}
+        {match.sides.home.score?.score ?? 0} - {match.sides.visitor.score?.score ?? 0}
       </span>
       <Image width="120" height="120" alt="" src={teamBLogo} className="m-10" />
       <p className="font-semibold max-w-64">
         <span className="text-xl">{division}</span> <br></br>
-        {match.teamA.franchiseName}: &nbsp;W:{teamAWins} &nbsp;L:{teamALosses}{" "}
+        {match.sides.home.team?.name}: &nbsp;W:{teamAWins} &nbsp;L:{teamALosses}{" "}
         <br></br>
-        {match.teamB.franchiseName}: &nbsp;W:{teamBWins} &nbsp;L:{teamBLosses}
+        {match.sides.visitor.team?.name}: &nbsp;W:{teamBWins} &nbsp;L:{teamBLosses}
       </p>
     </div>
 
@@ -54,18 +54,18 @@ const MatchResultComponent: React.FC<MatchHistoryProps> = ({
             <Image
               width="60"
               height="60"
-              alt={`${match.teamA.franchiseName} logo`}
+              alt={`${match.sides.home.team?.name} logo`}
               src={teamALogo}
               className="rounded-full"
             />
             <span className="text-sm font-medium text-center">
-              {match.teamA.franchiseName}
+              {match.sides.home.team?.name}
             </span>
           </div>
 
           {/* Score */}
           <span className="text-2xl text-lightYellow  font-bold">
-            {match.scoreA ?? 0} - {match.scoreB ?? 0}
+          {match.sides.home.score?.score} - {match.sides.visitor.score?.score}
           </span>
 
           {/* Team B */}
@@ -73,12 +73,12 @@ const MatchResultComponent: React.FC<MatchHistoryProps> = ({
             <Image
               width="60"
               height="60"
-              alt={`${match.teamB.franchiseName} logo`}
+              alt={`${match.sides.visitor.team?.name} logo`}
               src={teamBLogo}
               className="rounded-full"
             />
             <span className="text-sm font-medium text-center">
-              {match.teamB.franchiseName}
+              {match.sides.visitor.team?.name}
             </span>
           </div>
         </div>
@@ -87,9 +87,9 @@ const MatchResultComponent: React.FC<MatchHistoryProps> = ({
         <div className="flex flex-col items-center text-center space-y-2">
           <span className="text-sm">{division}</span>
           <p className="text-xs">
-            {match.teamA.franchiseName}: W:{teamAWins} L:{teamALosses}
+            {match.sides.home.team?.name}: W:{teamAWins} L:{teamALosses}
             <br />
-            {match.teamB.franchiseName}: W:{teamBWins} L:{teamBLosses}
+            {match.sides.visitor.team?.name}: W:{teamBWins} L:{teamBLosses}
           </p>
         </div>
       </div>

@@ -5,8 +5,8 @@ class League {
   leagueId: string;
   leagueName: string;
   season: number;
-  settings: LeagueSettings;
   divisions: Division[];
+  logo: string;
   staff: {
     owner?: [number, string];
     regAdmins?: [number, string][];
@@ -27,10 +27,17 @@ class League {
             regAdmins: [number, string][];
             supAdmins: [number, string][];
           };
+          logo: string;
         }
       | {
           type: "newLeague";
-          divisionData: { divName: string; rangeMMR: [number, number] }[];
+          divisionData: { divName: string; rangeMMR: [number, number];}[];
+          logo: string;
+          staff: {
+            owner: [number, string];
+            regAdmins: [number, string][];
+            supAdmins: [number, string][];
+          };
         }
   ) {
     if (options.type === "homePageData") {
@@ -38,24 +45,16 @@ class League {
       this.leagueId = options.leagueId;
       this.leagueName = leagueName;
       this.season = options.season;
-      this.settings = options.settings;
       this.divisions = options.divisions;
       this.staff = options.staff;
+      this.logo = options.logo;
     } else if (options.type === "newLeague") {
       // Logic for Creating a New League
       this.leagueId = generateShortId(); // Generate a new leagueId
       this.leagueName = leagueName;
+      this.logo = options.logo;
       this.season = 1; // Default season for new leagues
-      this.settings = {
-        numberOfTeamsRequired: 0, // Placeholder
-        maxTeamSize: 0,   // Placeholder
-      }
-      this.staff = {
-        owner: [0, ""], // Placeholder owner
-        regAdmins: [],
-        supAdmins: [],
-      };
-
+      this.staff = options.staff
       // Generate divisions
       this.divisions = options.divisionData.map((d) => ({
         divisionId: generateShortId(),

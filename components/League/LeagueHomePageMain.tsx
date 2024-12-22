@@ -4,7 +4,7 @@ import { StatsDataTableComponent } from "../StatsDataTableComponent";
 import { DivisionProvider, useDivision } from "./DivisionSelector/DivisionContext";
 import DivisionSelect from "./DivisionSelector/DivisionSelect";
 import MultiBracketTournament from "./Brackets";
-
+import { StandingsTableComponent } from "./Standings";
 export interface LeagueHomePageProps {
   leagueName: string;
   divisions: string[];
@@ -46,7 +46,7 @@ export const LeagueHomePageMain: React.FC<LeagueHomePageProps> = (props) => {
 };
 
 
-const Standings = () => <div>Standings Component</div>;
+const Standings: React.FC<{ division: string }> = ({ division }) => <div><StandingsTableComponent division={division}/></div>;
 const Stats: React.FC<{ division: string }> = ({ division }) => {
   return (
     <div>
@@ -68,7 +68,7 @@ const DynamicSection: React.FC<{ activeTab: string }> = ({ activeTab }) => {
   const renderSection = () => {
     switch (activeTab) {
       case "Standings":
-        return <Standings />;
+        return <Standings  division={activeDivision} />;
       case "Stats":
         return <Stats division={activeDivision} />;
       case "Brackets":
@@ -78,7 +78,7 @@ const DynamicSection: React.FC<{ activeTab: string }> = ({ activeTab }) => {
       case "Schedule":
         return <Schedule />;
       default:
-        return <Standings />;
+        return <Standings division={activeDivision} />;
     }
   };
 
