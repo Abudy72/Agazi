@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image"
 
 export interface PlayerStatsProps {
   playerName: string;
@@ -77,44 +76,44 @@ export const StatsDataTableComponent: React.FC<{ division: string }> = ({
           onClick={handleSortByRole}
           className="bg-transparent text-white p-2 rounded"
         >
-          <Image className="relative" src="/sort.svg" width={30} height={30} alt="sort image" onClick={handleSortByRole}/>
+         
         </button>
       </div>
 
       {/* Table */}
       <div className="overflow-x-auto rounded-md border border-gray-300">
-        <table className="min-w-full text-sm">
+        <table className="min-w-full text-md">
           <thead className="bg-blue text-darkYellow font-semibold">
             <tr>
-              <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-center">Role</th>
-              <th className="px-4 py-2 text-center">K/D/A</th>
-              <th className="px-4 py-2 text-center">Wins</th>
-              <th className="px-4 py-2 text-center">Losses</th>
-              <th className="px-4 py-2 text-center">Player Damage</th>
-              <th className="px-4 py-2 text-center">Damage Mitigated</th>
-              <th className="px-4 py-2 text-center">Damage Taken</th>
-              <th className="px-4 py-2 text-center">Structure Damage</th>
-              <th className="px-4 py-2 text-center">Healing</th>
-              <th className="px-4 py-2 text-center">Gold</th>
-              <th className="px-4 py-2 text-center">Distance Travelled</th>
+              <th className="px-4 py-3 text-left">Name</th>
+              <th className="px-4 py-3 text-center cursor-pointer" onClick={handleSortByRole}>Role</th>
+              <th className="px-4 py-3 text-center">K/D/A</th>
+              <th className="px-4 py-3 text-center">Wins</th>
+              <th className="px-4 py-3 text-center">Losses</th>
+              <th className="px-4 py-3 text-center">Player Damage</th>
+              <th className="px-4 py-3 text-center">Damage Mitigated</th>
+              <th className="px-4 py-3 text-center">Damage Taken</th>
+              <th className="px-4 py-3 text-center">Structure Damage</th>
+              <th className="px-4 py-3 text-center">Healing</th>
+              <th className="px-4 py-3 text-center">Gold</th>
+              <th className="px-4 py-3 text-center">Distance Travelled</th>
             </tr>
           </thead>
           <tbody className="bg-primaryBG text-white">
             {paginatedData.map((row, index) => (
               <tr key={index} className="border-t">
                 <td className="sticky z-10 left-0 px-4 py-2 bg-primaryBG">{row.playerName} </td>
-                <td className="px-4 py-2 text-center">{row.role}</td>
-                <td className="px-4 py-2">{row.kills}/{row.deaths}/{row.assists}</td>
-                <td className="px-4 py-2 text-center">{row.wins}</td>
-                <td className="px-4 py-2 text-center">{row.losses}</td>
-                <td className="px-4 py-2 text-center">{row.dmg_dealt}</td>
-                <td className="px-4 py-2 text-center">{row.dmg_mitigated}</td>
-                <td className="px-4 py-2 text-center">{row.dmg_taken}</td>
-                <td className="px-4 py-2 text-center">{row.dmg_struct}</td>
-                <td className="px-4 py-2 text-center">{row.healing}</td>
-                <td className="px-4 py-2 text-center">{row.gold}</td>
-                <td className="px-4 py-2 text-center">{row.distance}</td>
+                <td className="px-4 py-3 text-center">{row.role}</td>
+                <td className="px-4 py-3 text-center">{row.kills}/{row.deaths}/{row.assists}</td>
+                <td className="px-4 py-3 text-center">{row.wins}</td>
+                <td className="px-4 py-3 text-center">{row.losses}</td>
+                <td className="px-4 py-3 text-center">{row.dmg_dealt}</td>
+                <td className="px-4 py-3 text-center">{row.dmg_mitigated}</td>
+                <td className="px-4 py-3 text-center">{row.dmg_taken}</td>
+                <td className="px-4 py-3 text-center">{row.dmg_struct}</td>
+                <td className="px-4 py-3 text-center">{row.healing}</td>
+                <td className="px-4 py-3 text-center">{row.gold}</td>
+                <td className="px-4 py-3 text-center">{row.distance}</td>
               </tr>
             ))}
           </tbody>

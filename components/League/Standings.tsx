@@ -44,7 +44,7 @@ export const StandingsTableComponent: React.FC<{ division: string }> = ({
           <tbody className="bg-primaryBG text-white">
             {paginatedData.map((row, index) => (
               <tr key={index} className="border-t">
-                <td className="px-4 py-2 text-center">{index + 1}</td>
+                <td className="px-4 py-3 text-center">{index + 1}</td>
                 <td className="px-4 py-2 text-left">{row.teamName}</td>
                 <td className="px-4 py-2 text-center">{row.points}</td>
                 <td className="px-4 py-2 text-center">{row.gamesWon}</td>

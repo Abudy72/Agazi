@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { StatsDataTableComponent } from "../StatsDataTableComponent";
+import { StatsDataTableComponent } from "./StatsDataTableComponent";
 import { DivisionProvider, useDivision } from "./DivisionSelector/DivisionContext";
 import DivisionSelect from "./DivisionSelector/DivisionSelect";
 import MultiBracketTournament from "./Brackets";
