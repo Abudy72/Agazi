@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface DivisionContextProps {
-  activeDivision: string;
-  setActiveDivision: (division: string) => void;
+  activeDivision: [string,number];
+  setActiveDivision: (division: [string,number]) => void;
 }
 
 const DivisionContext = createContext<DivisionContextProps | undefined>(
@@ -10,7 +10,7 @@ const DivisionContext = createContext<DivisionContextProps | undefined>(
 );
 
 export const DivisionProvider: React.FC<{
-  initialDivision: string;
+  initialDivision: [string,number];
   children: ReactNode;
 }> = ({ initialDivision, children }) => {
   const [activeDivision, setActiveDivision] = useState(initialDivision);

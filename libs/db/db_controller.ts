@@ -1,5 +1,4 @@
 
-
 import { eq, and } from "drizzle-orm";
 import { db } from "./connection";
 import { leagues } from "./schemas/leagues";
@@ -9,7 +8,7 @@ import { profiles } from "./schemas/profiles";
 import { divisions } from "./schemas/divisions";
 
 // Create a new league
-export async function createLeague(leagueData: { league_id: number; league_name: string; current_season?: number }) {
+export async function createLeague(leagueData: { league_id: number; league_name: string; current_season: number }) {
     return await db.insert(leagues).values(leagueData).execute();
 }
 
@@ -35,7 +34,7 @@ export async function updateDivision(leagueId: number, divisionId: number, updat
 }
 
 // Create a new match
-export async function createMatch(matchDataEntry: { match_id: number; division_id: number }) {
+export async function addNewMatch(matchDataEntry: { match_id: number; division_id: number }) {
     return await db.insert(matches).values(matchDataEntry).execute();
 }
 
@@ -48,7 +47,7 @@ export async function updateMatch(divisionId: number, matchId: number, updateDat
 }
 
 // Create match data entry
-export async function createMatchData(matchDataEntry: typeof matchData.$inferInsert) {
+export async function addMatchhData(matchDataEntry: typeof matchData.$inferInsert) {
     return await db.insert(matchData).values(matchDataEntry).execute();
 }
 
@@ -70,5 +69,19 @@ export async function updateProfile(discordId: number, updateData: Partial<{ pla
     return await db.update(profiles)
         .set(updateData)
         .where(eq(profiles.discord_id, discordId))
+        .execute();
+}
+
+// fetch leagues
+export async function fetchLeagueById(league_id: number) {
+    return await db.select().from(leagues)
+        .where(eq(leagues.league_id, league_id))
+        .execute();
+}
+
+// fetch Divisions
+export async function fetchDivisionById(divison_id: number) {
+    return await db.select().from(divisions)
+        .where(eq(divisions.division_id, divison_id))
         .execute();
 }

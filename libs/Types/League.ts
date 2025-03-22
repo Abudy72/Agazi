@@ -1,30 +1,16 @@
 import { Game, Side, SideInfo } from "react-tournament-bracket/lib/components/model";
 
-export interface LeagueBracket {
-  stageType: StageType;
-  groups? : {
-    groupName: string,
-    teamInfo: {
-      rank: number,
-      seed?: number,
-      id: string;
-      name: string;
-    }[]
-  }
+export interface League {
+  league_id: number;
+  league_name: string;
+  current_season: number;
+  league_logo?: string
 }
 export interface Division {
-  divisionId: string;
-  divisionName: string;
-  rangeMMR: [number, number];
-  groups?: {
-    groupName: string,
-    teams : {
-      teamId: string
-    }
-  }
-  schedule?: LeagueSet[];
-  bracket?: LeagueBracket[];
-  currentSeason: number;
+  division_id: number;
+  division_name: string;
+  league_id: number;
+  leagueDetails?: League
 }
 export interface Match {
   id: string;

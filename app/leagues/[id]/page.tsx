@@ -1,7 +1,7 @@
 import Navbar from "@/components/Header";
 import { LeagueHomePageMain } from "@/components/League/LeagueHomePageMain";
 import { PageNotFound } from "@/components/PageNotFound";
-import {fetchLeagueBasedOnID} from "@/libs/util/LeagueUtil"
+import { getLeagueWithDivisions } from "@/libs/util/leagues";
 interface LeaguePageProps {
   params: {
     id: string;
@@ -9,14 +9,14 @@ interface LeaguePageProps {
 }
 
 const LeaguePage: React.FC<LeaguePageProps> = async ({ params }) => {
-  const { id } = await params;
-  const league = fetchLeagueBasedOnID(id);
+  const {id}  = await params
+  const league = await getLeagueWithDivisions(Number(id));
   return league ? (
     <div>
       <Navbar activeTab={-1} />
       <LeagueHomePageMain
-        leagueName={"Olympus Smite Leage"}
-        divisions={league.divisions.map(d => d.divisionName)}
+        leagueName={league.league[0]}
+        divisions={league.divisions}
       />
     </div>
   ) : (

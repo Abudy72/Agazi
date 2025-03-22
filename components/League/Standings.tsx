@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export const StandingsTableComponent: React.FC<{ division: string }> = ({
+export const StandingsTableComponent: React.FC<{ division: [string,number] }> = ({
   division,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(10);
-  const data = fetchTeamStandings(division);
+  const data = fetchTeamStandings(division[0]);
 
 
   const startIndex = (currentPage - 1) * rowsPerPage;

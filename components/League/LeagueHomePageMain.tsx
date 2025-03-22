@@ -4,16 +4,17 @@ import { StatsDataTableComponent } from "./StatsDataTableComponent";
 import { DivisionProvider, useDivision } from "./DivisionSelector/DivisionContext";
 import DivisionSelect from "./DivisionSelector/DivisionSelect";
 import { StandingsTableComponent } from "./Standings";
+import { Division, League } from "@/libs/Types/League";
 export interface LeagueHomePageProps {
-  leagueName: string;
-  divisions: string[];
+  leagueName: League;
+  divisions: Division[];
 }
 
 export const LeagueHomePageMain: React.FC<LeagueHomePageProps> = (props) => {
-  const [activeTab, setActiveTab] = useState("Standings");
+  const [activeTab, setActiveTab] = useState("Stats");
 
   return (
-    <DivisionProvider initialDivision={props.divisions[0]}>
+    <DivisionProvider initialDivision={[props.divisions[0].division_name,props.divisions[0].division_id]}>
       <div>
         <div className="flex flex-wrap justify-center p-2 bg-blue text-darkYellow">
           {/* DivisionSelect */}
@@ -45,8 +46,8 @@ export const LeagueHomePageMain: React.FC<LeagueHomePageProps> = (props) => {
 };
 
 
-const Standings: React.FC<{ division: string }> = ({ division }) => <div><StandingsTableComponent division={division}/></div>;
-const Stats: React.FC<{ division: string }> = ({ division }) => {
+const Standings: React.FC<{ division: [string,number] }> = ({ division }) => <div><StandingsTableComponent division={division}/></div>;
+const Stats: React.FC<{ division: [string,number] }> = ({ division }) => {
   return (
     <div>
       <StatsDataTableComponent division={division} />
