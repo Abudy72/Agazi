@@ -1,33 +1,31 @@
 "use client"
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Header";
 import LeaguesPage from "@/components/League/HomePage/LeagueDefaultPage";
 
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative w-screen h-screen bg-black bg-opacity-50 backdrop-blur-sm overflow-auto">
       <Navbar activeTab={1} />
-      <div className="flex flex-col items-center text-lightBlue">
-        <span className=" text-3xl md:-translate-x-80+">
-          {" "}
-          Featured Leagues{" "}
-        </span>
-        {/* <Carousel prop={leaguesMOCKDATA} type={"league"} /> */}
-
-        <span className=" text-3xl md:-translate-x-80+">
-          {" "}
-          Recent matches{" "}
-        </span>
-        <RenderMatchResultsComponent/>
-
-        <span className=" text-3xl md:-translate-x-80+"> Upcoming Matchs </span>
-        {/* <Carousel prop={upcomingMatchesMOCKDATA} type={"match"} /> */}
+      
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="bg-lightBlue bg-opacity-60 p-8 rounded-xl">
+          <DivisionSelector />
+        </div>
       </div>
-      <Footer />
+
+      {/* <div className="flex flex-col items-center text-lightBlue">
+        <span className="text-3xl mt-20">Featured Leagues</span>
+        <Carousel prop={leaguesMOCKDATA} type={"league"} />
+        <span className="text-3xl mt-20">Recent Matches</span>
+        <Carousel prop={upcomingMatchesMOCKDATA} type={"match"} />
+      </div> */}
+      
+      
     </div>
   );
 }
+
 
 // const RenderMatchResultsComponent = () => {
 //   const res = fetchRecentMatches();
@@ -141,6 +139,6 @@ export default function Home() {
 //   );
 // };
 
-const RenderMatchResultsComponent = () => {
+const DivisionSelector = () => {
   return <LeaguesPage/>
 }

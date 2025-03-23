@@ -48,20 +48,26 @@ const LeaguesPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div>
       <h1 className="text-2xl font-bold mb-4">Choose a League</h1>
       {isLoading ? (
         <p>Loading leagues...</p>
       ) : (
         <select
           onChange={handleLeagueChange}
-          className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 border border-black rounded-md shadow-sm focus:outline-none 
+            focus:ring-2 focus:ring-blue-500 bg-lightBlue "
         >
           <option value="">Select a league</option>
           {leagues.map((league) => (
-            <option key={league.league_id} value={league.league_id}>
-              {league.league_name}
-            </option>
+            <option
+            className="bg-blue text-white hover:bg-gray-700"
+            key={league.league_id}
+            value={league.league_id}
+          >
+            {league.league_name}
+          </option>
+          
           ))}
         </select>
       )}
