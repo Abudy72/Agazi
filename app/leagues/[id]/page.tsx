@@ -15,7 +15,7 @@ const LeaguePage: React.FC<LeaguePageProps> = async ({ params }) => {
     <div>
       <Navbar activeTab={-1} />
       <LeagueHomePageMain
-        leagueName={league.league[0]}
+        leagueName={league.league[0]} 
         divisions={league.divisions}
       />
     </div>

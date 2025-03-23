@@ -79,6 +79,10 @@ export async function fetchLeagueById(league_id: number) {
         .execute();
 }
 
+export async function fetchAllLeagues() {
+    return await db.select().from(leagues).execute();
+}
+
 // fetch Divisions
 export async function fetchDivisionById(divison_id: number) {
     return await db.select().from(divisions)
