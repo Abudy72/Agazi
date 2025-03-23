@@ -64,6 +64,7 @@ const Schedule = () => <div>Schedule Component</div>;
 
 const DynamicSection: React.FC<{ activeTab: string }> = ({ activeTab }) => {
   const { activeDivision } = useDivision();
+  console.log(activeDivision[0])
   const renderSection = () => {
     switch (activeTab) {
       case "Standings":
