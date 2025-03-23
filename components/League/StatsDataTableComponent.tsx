@@ -54,6 +54,7 @@ export const StatsDataTableComponent: React.FC<{ division: [string,number] }> = 
         <p>Loading...</p>
       ) : (
         <>
+        <p className="flex flex-col items-center text-2xl text-darkYellow font-bold mb-4">{division[0]} Leaderboard</p>
           <div className="mb-2">
             <input
               type="text"

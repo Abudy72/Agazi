@@ -3,8 +3,8 @@ import { matches } from "./matches";
 
 
 export const matchData = mysqlTable("match_data", {
-    match_id: int("match_id").references(() => matches.match_id, { onDelete: "cascade" }),
-    player_id: int("player_id"),
+    match_id: varchar("match_id",{length: 255}).references(() => matches.match_id, { onDelete: "cascade" }),
+    player_id: varchar("player_id", {length: 255}),
     player_name: varchar("player_name", { length: 255 }).notNull(),
     team: varchar("team", { length: 50 }).notNull(),
     assigned_role: varchar("assigned_role", { length: 50 }).notNull(),
@@ -26,6 +26,7 @@ export const matchData = mysqlTable("match_data", {
     tower_kills: int("tower_kills").notNull().default(0),
     phoenix_kills: int("phoenix_kills").notNull().default(0),
     titan_kills: int("titan_kills").notNull().default(0),
+    platform: varchar("platform", {length: 255}).notNull(),
     starter_item: varchar("starter_item", { length: 255 }),
     relic: varchar("relic", { length: 255 }),
     item1: varchar("item1", { length: 255 }),

@@ -1,4 +1,4 @@
-import { createLeague, fetchAllLeagues, fetchLeagueById, updateLeague } from "@/libs/db/db_controller";
+import { createLeague, fetchAllLeagues, fetchLeagueById, updateLeague } from "@/libs/db/LeagueOps";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -48,9 +48,7 @@ export async function PATCH(req: NextRequest) {
 export async function GET() {
     try {
         const data = await fetchAllLeagues();
-       
         return NextResponse.json({ message: `${data.length} leagues retrieved`, data: data }, { status: 200 },);
-
     } catch (error) {
         console.error("Error creating league:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

@@ -33,13 +33,8 @@ export async function updateDivision(leagueId: number, divisionId: number, updat
         .execute();
 }
 
-// Create a new match
-export async function addNewMatch(matchDataEntry: { match_id: number; division_id: number }) {
-    return await db.insert(matches).values(matchDataEntry).execute();
-}
-
 // Update a match
-export async function updateMatch(divisionId: number, matchId: number, updateData: Partial<{ match_id: number }>) {
+export async function updateMatch(divisionId: number, matchId: string, updateData: Partial<{ match_id: string }>) {
     return await db.update(matches)
         .set(updateData)
         .where(and(eq(matches.division_id, divisionId), eq(matches.match_id, matchId)))
@@ -52,7 +47,7 @@ export async function addMatchhData(matchDataEntry: typeof matchData.$inferInser
 }
 
 // Update match data
-export async function updateMatchData(playerId: number, matchId: number, updateData: Partial<typeof matchData.$inferInsert>) {
+export async function updateMatchData(playerId: string, matchId: string, updateData: Partial<typeof matchData.$inferInsert>) {
     return await db.update(matchData)
         .set(updateData)
         .where(and(eq(matchData.player_id, playerId), eq(matchData.match_id, matchId)))
@@ -60,12 +55,12 @@ export async function updateMatchData(playerId: number, matchId: number, updateD
 }
 
 // Create a new profile
-export async function createProfile(profileData: { discord_id: number; player_id: number; player_name: string }) {
+export async function createProfile(profileData: { discord_id: number; player_id: string; player_name: string }) {
     return await db.insert(profiles).values(profileData).execute();
 }
 
 // Update a profile
-export async function updateProfile(discordId: number, updateData: Partial<{ player_id: number; player_name: string }>) {
+export async function updateProfile(discordId: number, updateData: Partial<{ player_id: string; player_name: string }>) {
     return await db.update(profiles)
         .set(updateData)
         .where(eq(profiles.discord_id, discordId))
@@ -87,5 +82,11 @@ export async function fetchAllLeagues() {
 export async function fetchDivisionById(divison_id: number) {
     return await db.select().from(divisions)
         .where(eq(divisions.division_id, divison_id))
+        .execute();
+}
+
+export async function fetchDivisionByName(divison_name: string) {
+    return await db.select().from(divisions)
+        .where(eq(divisions.division_name, divison_name))
         .execute();
 }
