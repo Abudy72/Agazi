@@ -9,6 +9,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ["Parkinsans", "sans-serif"],
+      numbies: ["Helvetica", "Helvetica"]
     },
     extend: {
       colors: {

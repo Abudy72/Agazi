@@ -7,6 +7,10 @@ export const StatsDataTableComponent: React.FC<{ division: [string,number] }> = 
   const [searchQuery, setSearchQuery] = useState('');
   const [data, setData] = useState<PlayerStats[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortConfig, setSortConfig] = useState<{
+    key: keyof PlayerStats;
+    direction: 'ascending' | 'descending';
+  } | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,9 +30,31 @@ export const StatsDataTableComponent: React.FC<{ division: [string,number] }> = 
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
-  const filteredData = data.filter((player) =>
+  const requestSort = (key: keyof PlayerStats) => {
+    let direction: 'ascending' | 'descending' = 'ascending';
+    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  const sortedData = [...data];
+  if (sortConfig !== null) {
+    sortedData.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    });
+  }
+
+  const filteredData = sortedData.filter((player) =>
     player.player_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -46,6 +72,25 @@ export const StatsDataTableComponent: React.FC<{ division: [string,number] }> = 
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
+  };
+
+  // Helper function to render sortable header
+  const renderSortableHeader = (key: keyof PlayerStats, label: string) => {
+    return (
+      <th 
+        className="px-4 py-3 text-center cursor-pointer hover:bg-blue-700"
+        onClick={() => requestSort(key)}
+      >
+        <div className="flex items-center justify-center">
+          {label}
+          {sortConfig?.key === key && (
+            <span className="ml-1">
+              {sortConfig.direction === 'ascending' ? '↑' : '↓'}
+            </span>
+          )}
+        </div>
+      </th>
+    );
   };
 
   return (
@@ -70,37 +115,37 @@ export const StatsDataTableComponent: React.FC<{ division: [string,number] }> = 
                 <tr>
                   <th className="px-4 py-3 text-left">Name</th>
                   <th className="px-4 py-3 text-center">K/D/A</th>
-                  <th className="px-4 py-3 text-center">Wins</th>
-                  <th className="px-4 py-3 text-center">Losses</th>
-                  <th className="px-4 py-3 text-center">Player Damage</th>
-                  <th className="px-4 py-3 text-center">Damage Mitigated</th>
-                  <th className="px-4 py-3 text-center">Structure Damage</th>
-                  <th className="px-4 py-3 text-center">Ally Healing</th>
-                  <th className="px-4 py-3 text-center">Wards Placed</th>
-                  <th className="px-4 py-3 text-center">Gold Earned</th>
-                  <th className="px-4 py-3 text-center">Xp Earned</th>
-                  <th className="px-4 py-3 text-center">Tower Kills</th>
-                  <th className="px-4 py-3 text-center">Phenoix Kills</th>
-                  <th className="px-4 py-3 text-center">Titan Kills</th>
+                  {renderSortableHeader('wins', 'Wins')}
+                  {renderSortableHeader('losses', 'Losses')}
+                  {renderSortableHeader('total_damage_dealt', 'Player Damage')}
+                  {renderSortableHeader('total_damage_mitigated', 'Damage Mitigated')}
+                  {renderSortableHeader('total_structure_damage', 'Structure Damage')}
+                  {renderSortableHeader('total_ally_healing', 'Ally Healing')}
+                  {renderSortableHeader('total_wards_placed', 'Wards Placed')}
+                  {renderSortableHeader('total_gold_earned', 'Gold Earned')}
+                  {renderSortableHeader('total_xp_earned', 'Xp Earned')}
+                  {renderSortableHeader('total_tower_kills', 'Tower Kills')}
+                  {renderSortableHeader('total_pheonix_kills', 'Phenoix Kills')}
+                  {renderSortableHeader('total_titan_kills', 'Titan Kills')}
                 </tr>
               </thead>
               <tbody className="bg-primaryBG text-white">
                 {paginatedData.map((player, index) => (
                   <tr key={index} className="border-t">
                     <td className="sticky z-10 left-0 px-4 py-2 bg-primaryBG">{player.player_name}</td>
-                    <td className="px-4 py-3 text-center">{player.total_kills}/{player.total_deaths}/{player.total_assists}</td>
-                    <td className="px-4 py-3 text-center">{0}</td>
-                    <td className="px-4 py-3 text-center">{0}</td>
-                    <td className="px-4 py-3 text-center">{player.total_damage_dealt}</td>
-                    <td className="px-4 py-3 text-center">{player.total_damage_mitigated}</td>
-                    <td className="px-4 py-3 text-center">{player.total_structure_damage}</td>
-                    <td className="px-4 py-3 text-center">{player.total_ally_healing}</td>
-                    <td className="px-4 py-3 text-center">{player.total_wards_placed}</td>
-                    <td className="px-4 py-3 text-center">{player.total_gold_earned}</td>
-                    <td className="px-4 py-3 text-center">{player.total_xp_earned}</td>
-                    <td className="px-4 py-3 text-center">{player.total_tower_kills}</td>
-                    <td className="px-4 py-3 text-center">{player.total_pheonix_kills}</td>
-                    <td className="px-4 py-3 text-center">{player.total_titan_kills}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_kills}/{player.total_deaths}/{player.total_assists}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.wins}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.losses}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_damage_dealt.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_damage_mitigated.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_structure_damage.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_ally_healing.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_wards_placed.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_gold_earned.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_xp_earned.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_tower_kills.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_pheonix_kills.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-center font-numbies">{player.total_titan_kills.toLocaleString()}</td>
                   </tr>
                 ))}
               </tbody>
