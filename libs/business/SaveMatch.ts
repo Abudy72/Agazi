@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+
 import { fetchDivisionByName } from "../db/LeagueOps";
 import { createNewMatch } from "../db/StatsOps";
 import { MatchData, Team } from "../Types/Stats";
@@ -43,8 +44,20 @@ const transformMatchData = (data: any): MatchData => (
         towerKills: player.towerKills,
         phenoixKills: player.phoenixKills,
         titanKills: player.titanKills,
+        jungle_camp_xp: player.jungleCampKillXp,
+        jungle_camp_gold: player.jungleCampKillGold,
+        jungle_camp_lowestLevel_xp: player.jungleCampLowestLevelXp,
+        minion_assist_xp: player.minionAssistXp,
+        minion_assist_gold: player.minionAssistGold,
+        minion_kill_xp: player.minionKillXp,
+        minion_kill_gold: player.minionKillGold,
+        minion_lowestLevel_xp: player.minionLowestLevelXp,
+        gold_blessing: player.goldBlessing,
+        player_kill_xp: player.playerKillXp,
+        player_kill_gold: player.playerKillGold,
         inventory: {
             starterItem: player.inventory.starterItem,
+            god_name: player.inventory.godName,
             relic: player.inventory.relic,
             aspect: player.inventory.aspect,
             items: player.inventory.items.filter((item: string) => item !== ""),
