@@ -24,7 +24,7 @@ const LeagueInfo: React.FC<{ leagueInfo: LeagueInfoProps }> = ({
   leagueInfo,
 }) => {
   return (
-    <div className="bg-[#0A2B5C] text-white p-6 rounded-lg flex flex-col md:flex-row max-w-7xl mx-auto mb-4 ">
+    <div className="bg-[#0A2B5C]  text-white p-6 rounded-lg flex flex-col md:flex-row max-w-7xl mx-auto mb-4 ">
       {/* Left Section */}
       <div className="flex flex-col items-center w-full p-4">
         <Image

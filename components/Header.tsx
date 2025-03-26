@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import Image from "next/image"
 
 const Navbar: React.FC<{
   activeTab: number;
@@ -16,7 +17,8 @@ const Navbar: React.FC<{
       <nav className="place-self-end max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo {ONLY IF VIEW IS MD+} */}
         <div className="hidden md:flex items-center">
-          <div className="flex text-pink-400 text-3xl font-semibold">Āgāzi</div>
+          {/* <div className="flex text-pink-400 text-3xl font-semibold">Āgāzi</div> */}
+          <Image src={"/favicon.png"} alt={""} height={100} width={100}/>
         </div>
         {/* Navigation Links */}
         <NavBarLinks
