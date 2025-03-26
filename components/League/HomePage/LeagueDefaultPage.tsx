@@ -18,9 +18,8 @@ const LeaguesPage = () => {
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
-        const response = await fetch('/api/league_op');
+        const response = await fetch('/api/league');
         const result = await response.json();
-        console.log(result); // Log the API response
 
         // Validate the response and extract the `data` array
         if (result && Array.isArray(result.data)) {

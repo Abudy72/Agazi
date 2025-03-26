@@ -1,24 +1,7 @@
-import { Division } from "@/libs/Types/League";
 import { FaDiscord, FaTwitter, FaTwitch } from "react-icons/fa";
 import Image from "next/image";
+import { LeagueInfoProps } from "@/libs/util/leagues";
 
-export interface LeagueInfoProps {
-  leagueName: string;
-  season: number;
-  seasonStart: string;
-  seasonEnd: string;
-  leaguePrizing: number;
-  Divisions: Division[];
-
-  ruleBookLink: string;
-  discordLink: string;
-  twitterLink: string;
-  twitchLink: string;
-  logoLink: string;
-
-  owners: string[];
-  management: [string, string][]; // [ManagerName, ManagerTItle]
-}
 
 const LeagueInfo: React.FC<{ leagueInfo: LeagueInfoProps }> = ({
   leagueInfo,
@@ -41,14 +24,16 @@ const LeagueInfo: React.FC<{ leagueInfo: LeagueInfoProps }> = ({
       <div className="w-full p-4">
         <h3 className="text-xl font-bold text-yellow-400 py-2 ">League Info</h3>
         <p className="p-0.7">Current Season: {leagueInfo.season}</p>
-        <p className="p-0.7">Season Starts:  {leagueInfo.seasonStart}</p>
-        <p className="p-0.7">Season Ends:    {leagueInfo.seasonEnd}</p>
+        <p className="p-0.7">Season Starts:  {leagueInfo.seasonStart.toDateString()}</p>
+        <p className="p-0.7">Season Ends:    {leagueInfo.seasonEnd.toDateString()}</p>
+        <p className="p-0.7">Draft Style:    {leagueInfo.draftStyle}</p>
+        <p className="p-0.7">Signups:    {leagueInfo.signups}</p>
         <p className="p-0.7">
-          League Prizing: {leagueInfo.leaguePrizing.toLocaleString()} GEMS
+          League Prizing: <span className="font-bold"> {leagueInfo.leaguePrizing.toLocaleString()} </span> GEMS
         </p>
         <p className="py-2 text-lg font-bold">Divisions:</p>
         <ul className="list-disc pl-5 py-0.5">
-          {leagueInfo.Divisions.map((div, index) => (
+          {leagueInfo.divisions.map((div, index) => (
             <li key={index}>{div.division_name}</li>
           ))}
         </ul>

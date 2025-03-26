@@ -4,9 +4,8 @@ import { StatsDataTableComponent } from "./StatsDataTableComponent";
 import { DivisionProvider, useDivision } from "./DivisionSelector/DivisionContext";
 import DivisionSelect from "./DivisionSelector/DivisionSelect";
 import { StandingsTableComponent } from "./Standings";
-import { Division, League } from "@/libs/Types/League";
+import { Division } from "@/libs/Types/League";
 export interface LeagueHomePageProps {
-  leagueName: League;
   divisions: Division[];
 }
 
