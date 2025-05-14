@@ -92,6 +92,7 @@ export const StandingsTableComponent: React.FC<{ division: [string,number] }> = 
 };
 
 function fetchTeamStandings(division: string) {
+  console.log(division)
     const d1 = [
       {
         points: 50,

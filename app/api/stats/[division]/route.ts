@@ -1,11 +1,17 @@
-import { NextResponse } from 'next/server';
 import { getPlayerStatsByDivision } from '@/libs/util/stats';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: Request, { params }: { params: { division: string } }) {
+
+export async function GET(req: NextRequest) {
   try {
-    const searchParams = await params;
-    const division = searchParams.division
-    const stats = await getPlayerStatsByDivision(Number(division));
+    const divisionParam = req.nextUrl.pathname.split('/').pop(); // gets the [division]
+    const division = Number(divisionParam);
+    
+    if (isNaN(division)) {
+      return NextResponse.json({ error: 'Invalid division parameter' }, { status: 400 });
+    }
+
+    const stats = await getPlayerStatsByDivision(division);
     return NextResponse.json(stats);
   } catch (error) {
     console.error('Error fetching player stats:', error);

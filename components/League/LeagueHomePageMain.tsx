@@ -5,6 +5,7 @@ import { DivisionProvider, useDivision } from "./DivisionSelector/DivisionContex
 import DivisionSelect from "./DivisionSelector/DivisionSelect";
 import { StandingsTableComponent } from "./Standings";
 import { Division } from "@/libs/Types/League";
+import { CustomBrackets } from "../Bracket/CustomBracket";
 export interface LeagueHomePageProps {
   divisions: Division[];
 }
@@ -53,11 +54,6 @@ const Stats: React.FC<{ division: [string,number] }> = ({ division }) => {
     </div>
   );
 };
-const Brackets: React.FC = () => {
-  return <div className="p-4">
-    <h1 className="text-2xl font-bold mb-4">Tournament Brackets</h1>
-  </div>;
-}
 const VODs = () => <div>VODs Component</div>;
 const Schedule = () => <div>Schedule Component</div>;
 
@@ -71,7 +67,10 @@ const DynamicSection: React.FC<{ activeTab: string }> = ({ activeTab }) => {
       case "Stats":
         return <Stats division={activeDivision} />;
       case "Brackets":
-        return <Brackets />;
+      return (
+        <CustomBrackets divisionId={0}/>
+      );
+      
       case "VODs":
         return <VODs />;
       case "Schedule":

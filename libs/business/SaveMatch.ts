@@ -7,6 +7,7 @@ import { MatchData, Team } from "../Types/Stats";
 
 export async function saveMatch(data: any) {
     const parsedData = transformMatchData(data);
+    console.log(`MatchID: ${parsedData.matchId} recieved, and is being processed`)
      fetchDivisionByName(parsedData.division).then(divsion => {
         return createNewMatch(parsedData, divsion[0].division_id)
     })
